@@ -5,19 +5,29 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingliststartcodekotlin.adapters.ProductAdapter
 import com.example.shoppingliststartcodekotlin.data.Repository
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     //you need to have an Adapter for the products
-   lateinit var adapter: ProductAdapter
+  // lateinit var adapter: ProductAdapter
 
-
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+//initialize layoutManager object
+        layoutManager = LinearLayoutManager(this)
+
+        recyclerView.layoutManager = layoutManager
+
+        adapter = ProductAdapter()
+        recyclerView.adapter = adapter
 
         Repository.getData().observe(this, Observer {
             Log.d("Products","Found ${it.size} products")
@@ -27,15 +37,15 @@ class MainActivity : AppCompatActivity() {
 
 
     fun updateUI() {
-        val layoutManager = LinearLayoutManager(this)
+  // val layoutManager = LinearLayoutManager(this)
 
         /*you need to have a defined a recylerView in your
         xml file - in this case the id of the recyclerview should
         be "recyclerView" - as the code line below uses that */
 
-       // recyclerView.layoutManager = layoutManager
+  // recyclerView.layoutManager = layoutManager
 
-       adapter = ProductAdapter(Repository.products)
+     //  adapter = ProductAdapter(Repository.products)
 
       /*connecting the recyclerview to the adapter  */
       //  recyclerView.adapter = adapter
