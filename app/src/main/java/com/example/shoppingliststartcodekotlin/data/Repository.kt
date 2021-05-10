@@ -19,6 +19,11 @@ object Repository {
     fun createTestData()
     {
         //add some products to the products list - for testing purposes
+        products.add(Product("Salt: A World History"))
+        products.add(Product("Sapiens"))
+        products.add(Product("The Devil in the White City"))
+        products.add(Product("Kitchen Confidential"))
+        products.add(Product("A Discovery of Witches"))
     }
 
 }
