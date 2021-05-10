@@ -1,3 +1,7 @@
 package com.example.shoppingliststartcodekotlin.data
 
-data class Product(var name:String = "") {}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+data class Product(var title:String = "",){}

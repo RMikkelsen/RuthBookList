@@ -3,6 +3,9 @@ package com.example.shoppingliststartcodekotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,12 +46,36 @@ class MainActivity : AppCompatActivity() {
         xml file - in this case the id of the recyclerview should
         be "recyclerView" - as the code line below uses that */
 
-  // recyclerView.layoutManager = layoutManager
+  //recyclerView.layoutManager = layoutManager
 
-     //  adapter = ProductAdapter(Repository.products)
+     // adapter = ProductAdapter(Repository.products)
 
       /*connecting the recyclerview to the adapter  */
-      //  recyclerView.adapter = adapter
+      //recyclerView.adapter = adapter
 
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.itemId
+        if (id == R.id.action_settings) {
+            Toast.makeText(this, "settings clicked", Toast.LENGTH_LONG).show()
+            return true
+      //  } else if (id == R.id.action_newGame) {
+         //   Toast.makeText(this, "New Game clicked", Toast.LENGTH_LONG).show()
+          //  game?.newGame()
+          //  return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
