@@ -33,11 +33,11 @@ class ProductAdapter() :
 
         holder.itemTitle.text = products[position].title
         holder.itemDetail.text = products[position].detail
-       //holder.itemImage.setImageBitmap(R.drawable.bookcover) = products[position].images
+     // holder.itemImage.text = products[position].images
     }
 
     override fun getItemCount(): Int {
-       return Repository.products.size
+       return products.size
     }
 //handles data passed to cardview
     //recives itemview object with type View

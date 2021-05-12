@@ -6,13 +6,25 @@
 
     <!--<item
         android:id="@+id/action_newGame"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         app:showAsAction="always"
         android:title="@string/newgame"/> -->
 
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:orderInCategory="2"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="2"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="help"/>
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="1"
+        android:icon="@android:drawable/ic_delete"
+        app:showAsAction="always"
+        android:title="delete"/>
 </menu>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("Products","Found ${it.size} products")
             updateUI()
         })
+
+
     }
 
 
@@ -70,6 +73,16 @@ class MainActivity : AppCompatActivity() {
         if (id == R.id.action_settings) {
             Toast.makeText(this, "settings clicked", Toast.LENGTH_LONG).show()
             return true
+            } else if (id == R.id.action_delete) {
+          Toast.makeText(this, "Delete Entire List Clicked!", Toast.LENGTH_LONG).show()
+            //  game?.newGame()
+           return true
+        }
+        else if (id == R.id.action_help) {
+            Toast.makeText(this, "Help Button Clicked", Toast.LENGTH_LONG).show()
+            //  game?.newGame()
+            return true
+
       //  } else if (id == R.id.action_newGame) {
          //   Toast.makeText(this, "New Game clicked", Toast.LENGTH_LONG).show()
           //  game?.newGame()

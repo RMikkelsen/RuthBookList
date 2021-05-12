@@ -26,6 +26,9 @@ object Repository {
         products.add(Product("The Devil in the White City", "Erik Larson", ""))
         products.add(Product("Kitchen Confidential", "Anthony Bourdain", "" ))
         products.add(Product("A Discovery of Witches", "Deborah Harkiness", "R.drawable.bookcover"))
+        products.add(Product("Dune", "Frank Herbert", ""))
+        products.add(Product("Guns, Germs, & Steel", "Frank Diamond", ""))
+        products.add(Product("Shantaram", "Gregory David Roberts", "" ))
     }
 
 }
