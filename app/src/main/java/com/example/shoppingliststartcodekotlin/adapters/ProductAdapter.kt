@@ -8,14 +8,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingliststartcodekotlin.R
+import com.example.shoppingliststartcodekotlin.data.Repository
+import com.example.shoppingliststartcodekotlin.data.Product
+import com.example.shoppingliststartcodekotlin.data.Repository.products
+import kotlinx.android.synthetic.main.card_layout.view.*
+
 
 //adding inner class of viewholder
 class ProductAdapter() :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-private var titles = arrayOf("Book One","Book Two","Book Three", "Book Four", "Book Five", "Book Six", "Book Seven", "Book Eight")
-    private var details = arrayOf("Item one details","Item two details","Item three details","Item four details", "Item five details","Item six details","Item seven details","Item eight details")
-    private var images = intArrayOf(R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover)
+//private var titles = arrayOf("Book One","Book Two","Book Three", "Book Four", "Book Five", "Book Six", "Book Seven", "Book Eight")
+    //private var details = arrayOf("Item one details","Item two details","Item three details","Item four details", "Item five details","Item six details","Item seven details","Item eight details")
+    //private var images = intArrayOf(R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
@@ -25,13 +30,14 @@ private var titles = arrayOf("Book One","Book Two","Book Three", "Book Four", "B
     }
 
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
-        holder.itemTitle.text = titles[position]
-        holder.itemDetail.text = details[position]
-        holder.itemImage.setImageResource(images[position])
+
+        holder.itemTitle.text = products[position].title
+        holder.itemDetail.text = products[position].detail
+       //holder.itemImage.setImageBitmap(R.drawable.bookcover) = products[position].images
     }
 
     override fun getItemCount(): Int {
-       return titles.size
+       return Repository.products.size
     }
 //handles data passed to cardview
     //recives itemview object with type View
@@ -49,9 +55,10 @@ private var titles = arrayOf("Book One","Book Two","Book Three", "Book Four", "B
             itemView.setOnClickListener {
                 val position: Int = adapterPosition
 
-                Toast.makeText(itemView.context, "you clicked on ${titles[position]}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "you clicked on ${products[position]}", Toast.LENGTH_SHORT).show()
             }
         }
 
     }
 }
+//holder.itemImage = Repository.image.toString()

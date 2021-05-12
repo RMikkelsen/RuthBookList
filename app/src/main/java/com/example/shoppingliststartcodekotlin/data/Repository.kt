@@ -3,6 +3,8 @@ package com.example.shoppingliststartcodekotlin.data
 import androidx.lifecycle.MutableLiveData
 
 object Repository {
+
+
     var products = mutableListOf<Product>()
 
     //listener to changes that we can then use in the Activity
@@ -19,11 +21,11 @@ object Repository {
     fun createTestData()
     {
         //add some products to the products list - for testing purposes
-        products.add(Product("Salt: A World History"))
-        products.add(Product("Sapiens"))
-        products.add(Product("The Devil in the White City"))
-        products.add(Product("Kitchen Confidential"))
-        products.add(Product("A Discovery of Witches"))
+        products.add(Product("Salt: A World History", "Mark Kurlansky", "" ))
+        products.add(Product("Sapiens", "Yuval Noah Harari", ""))
+        products.add(Product("The Devil in the White City", "Erik Larson", ""))
+        products.add(Product("Kitchen Confidential", "Anthony Bourdain", "" ))
+        products.add(Product("A Discovery of Witches", "Deborah Harkiness", "R.drawable.bookcover"))
     }
 
 }
