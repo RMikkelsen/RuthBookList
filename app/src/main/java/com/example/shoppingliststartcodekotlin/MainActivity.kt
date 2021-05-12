@@ -1,5 +1,7 @@
 package com.example.shoppingliststartcodekotlin
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     //you need to have an Adapter for the products
-  // lateinit var adapter: ProductAdapter
+    // lateinit var adapter: ProductAdapter
 
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>? = null
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         Repository.getData().observe(this, Observer {
-            Log.d("Products","Found ${it.size} products")
+            Log.d("Products", "Found ${it.size} products")
             updateUI()
         })
 
@@ -43,18 +45,18 @@ class MainActivity : AppCompatActivity() {
 
 
     fun updateUI() {
-  // val layoutManager = LinearLayoutManager(this)
+        // val layoutManager = LinearLayoutManager(this)
 
         /*you need to have a defined a recylerView in your
         xml file - in this case the id of the recyclerview should
         be "recyclerView" - as the code line below uses that */
 
-  //recyclerView.layoutManager = layoutManager
+        //recyclerView.layoutManager = layoutManager
 
-     // adapter = ProductAdapter(Repository.products)
+        // adapter = ProductAdapter(Repository.products)
 
-      /*connecting the recyclerview to the adapter  */
-      //recyclerView.adapter = adapter
+        /*connecting the recyclerview to the adapter  */
+        //recyclerView.adapter = adapter
 
     }
 
@@ -73,22 +75,42 @@ class MainActivity : AppCompatActivity() {
         if (id == R.id.action_settings) {
             Toast.makeText(this, "settings clicked", Toast.LENGTH_LONG).show()
             return true
-            } else if (id == R.id.action_delete) {
-          Toast.makeText(this, "Delete Entire List Clicked!", Toast.LENGTH_LONG).show()
+        } else if (id == R.id.action_delete) {
+            Toast.makeText(this, "Delete Entire List Clicked!", Toast.LENGTH_LONG).show()
             //  game?.newGame()
-           return true
-        }
-        else if (id == R.id.action_help) {
+            return true
+        } else if (id == R.id.action_help) {
             Toast.makeText(this, "Help Button Clicked", Toast.LENGTH_LONG).show()
             //  game?.newGame()
             return true
 
-      //  } else if (id == R.id.action_newGame) {
-         //   Toast.makeText(this, "New Game clicked", Toast.LENGTH_LONG).show()
-          //  game?.newGame()
-          //  return true
+            //  } else if (id == R.id.action_newGame) {
+            //   Toast.makeText(this, "New Game clicked", Toast.LENGTH_LONG).show()
+            //  game?.newGame()
+            //  return true
+
+        }else if (id == R.id.action_read) {
+
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("http://www.goodreads.com")
+                    )
+                    startActivity(intent)
+                }else if (id == R.id.action_send) {
+
+            val text = inputText.text.toString()
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Shared Data")
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
+            StartActivity(Intent.createChooser(sharingIntent, "Share Using"))
+
         }
-        return super.onOptionsItemSelected(item)
-    }
+
+
+
+            return super.onOptionsItemSelected(item)
+        }
+
 
 }

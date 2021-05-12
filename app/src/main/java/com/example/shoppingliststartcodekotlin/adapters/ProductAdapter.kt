@@ -43,11 +43,14 @@ class ProductAdapter() :
     //recives itemview object with type View
     //RecyclerView class
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         var itemImage: ImageView
         var itemTitle: TextView
         var itemDetail: TextView
 
-        init {
+        //var itemDelete: TextView
+
+    init {
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
@@ -57,8 +60,29 @@ class ProductAdapter() :
 
                 Toast.makeText(itemView.context, "you clicked on ${products[position]}", Toast.LENGTH_SHORT).show()
             }
-        }
+
+        //itemDelete = itemView.findViewById(R.id.item_delete)
+
+        //itemDelete.setOnClickListener { v: View ->
+          //  val position = adapterPosition
+          //  Repository.deleteProduct(position)
+         //   notifyItemRemoved(position) //this line notify the adapter
+       // }
 
     }
+
+
+
+    }
+
+
+
 }
 //holder.itemImage = Repository.image.toString()
+
+//itemDelete = itemView.findViewById(R.id.item_delete)
+//itemDelete.setOnClickListener { v: View ->
+  //  val position = adapterPosition
+    //Repository.deleteProduct(position)
+    //notifyItemRemoved(position) //this line notify the adapter
+//}
