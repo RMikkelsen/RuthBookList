@@ -33,7 +33,7 @@ class ProductAdapter() :
 
         holder.itemTitle.text = products[position].title
         holder.itemDetail.text = products[position].detail
-     // holder.itemImage.text = products[position].images
+      //holder.itemImage.text= products[position].images
     }
 
     override fun getItemCount(): Int {

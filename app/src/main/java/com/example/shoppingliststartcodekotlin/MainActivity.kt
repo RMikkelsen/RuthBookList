@@ -98,12 +98,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }else if (id == R.id.action_send) {
 
-            val text = inputText.text.toString()
+           // val text = inputText.text.toString()
             val sharingIntent = Intent(Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Shared Data")
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
-            StartActivity(Intent.createChooser(sharingIntent, "Share Using"))
+            //sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
+            startActivity(Intent.createChooser(sharingIntent, "Share Using"))
 
         }
 
