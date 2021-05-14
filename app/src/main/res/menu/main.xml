@@ -19,7 +19,8 @@
         android:id="@+id/action_send"
         android:orderInCategory="2"
         android:title="Send List"
-        app:showAsAction="never" />
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_send"/>
     <item
         android:id="@+id/action_read"
         android:orderInCategory="2"
@@ -28,13 +29,20 @@
     <item
         android:id="@+id/action_help"
         android:orderInCategory="2"
-        app:showAsAction="always"
+        app:showAsAction="never"
         android:icon="@android:drawable/ic_menu_help"
         android:title="help"/>
     <item
         android:id="@+id/action_delete"
-        android:orderInCategory="1"
-        android:icon="@android:drawable/ic_delete"
+        android:orderInCategory="3"
+        android:icon="@android:drawable/ic_menu_delete"
         app:showAsAction="always"
         android:title="delete"/>
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always|collapseActionView"
+        android:title="search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 </menu>

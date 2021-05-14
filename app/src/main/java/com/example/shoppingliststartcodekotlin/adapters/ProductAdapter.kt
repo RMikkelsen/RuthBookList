@@ -14,6 +14,8 @@ import com.example.shoppingliststartcodekotlin.data.Repository.products
 import kotlinx.android.synthetic.main.card_layout.view.*
 
 
+
+
 //adding inner class of viewholder
 class ProductAdapter() :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -32,8 +34,10 @@ class ProductAdapter() :
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
 
         holder.itemTitle.text = products[position].title
-        holder.itemDetail.text = products[position].detail
-      //holder.itemImage.text= products[position].images
+        holder.itemAuthor.text = products[position].author
+       //holder.itemImage.text = products[position].image
+
+
     }
 
     override fun getItemCount(): Int {
@@ -46,14 +50,16 @@ class ProductAdapter() :
 
         var itemImage: ImageView
         var itemTitle: TextView
-        var itemDetail: TextView
+        var itemAuthor: TextView
+
 
         //var itemDelete: TextView
 
     init {
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
-            itemDetail = itemView.findViewById(R.id.item_detail)
+            itemAuthor = itemView.findViewById(R.id.item_author)
+
 
             itemView.setOnClickListener {
                 val position: Int = adapterPosition
@@ -78,6 +84,8 @@ class ProductAdapter() :
 
 
 }
+
+
 //holder.itemImage = Repository.image.toString()
 
 //itemDelete = itemView.findViewById(R.id.item_delete)

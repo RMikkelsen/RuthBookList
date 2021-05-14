@@ -22,7 +22,8 @@ object Repository {
     fun createTestData()
     {
         //add some products to the products list - for testing purposes
-        products.add(Product("Salt: A World History", "Mark Kurlansky", R.drawable.whitebook ))
+        products.add(Product("Salt: A World History", "Mark Kurlansky",
+            R.drawable.whitebook))
         products.add(Product("Sapiens", "Yuval Noah Harari", R.drawable.whitebook))
         products.add(Product("The Devil in the White City", "Erik Larson", R.drawable.whitebook))
         products.add(Product("Kitchen Confidential", "Anthony Bourdain", R.drawable.whitebook ))
@@ -41,5 +42,14 @@ fun addProduct(product: Product) {
 
 
 }
+
+    fun deleteProduct(index: Int){
+        products.removeAt(index)
+    }
+
+    fun deleteAllProducts() {
+
+    }
+
 
 }

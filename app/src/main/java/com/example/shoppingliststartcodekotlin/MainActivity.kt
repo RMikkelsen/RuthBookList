@@ -8,13 +8,18 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingliststartcodekotlin.adapters.ProductAdapter
+import com.example.shoppingliststartcodekotlin.data.Product
 import com.example.shoppingliststartcodekotlin.data.Repository
+import com.example.shoppingliststartcodekotlin.data.Repository.products
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.card_layout.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>? = null
+
+
+    private var productList = mutableListOf<String>(products.toString())
+    private var displayList = mutableListOf<String>(products.toString())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,10 +93,6 @@ class MainActivity : AppCompatActivity() {
             //  game?.newGame()
             return true
 
-            //  } else if (id == R.id.action_newGame) {
-            //   Toast.makeText(this, "New Game clicked", Toast.LENGTH_LONG).show()
-            //  game?.newGame()
-            //  return true
 
         }else if (id == R.id.action_read) {
 
@@ -98,15 +103,42 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }else if (id == R.id.action_send) {
 
-           // val text = inputText.text.toString()
+           //val text = inputText.text.toString()
             val sharingIntent = Intent(Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Shared Data")
-            //sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
+           // sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
             startActivity(Intent.createChooser(sharingIntent, "Share Using"))
 
         }
+else if (id == R.id.action_search){
+            var searchView = item.actionView as SearchView
+            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query:String?): Boolean{
+                return true
+                }
 
+               // check if new text is not empty
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if(newText!!.isNotEmpty()){
+                        displayList.clear()
+                        var search = newText.toLowerCase(Locale.getDefault())
+                        for(Product in productList){
+                            if(Product.toLowerCase(Locale.getDefault()).contains(search)){
+                displayList.add(Product)
+                            }
+
+                            recyclerView.adapter!!.notifyDataSetChanged()
+                        }
+                    }else {
+                        displayList.clear()
+                        displayList.addAll(productList)
+                        recyclerView.adapter!!.notifyDataSetChanged()
+                    }
+                    return true
+                }
+            })
+        }
 
 
             return super.onOptionsItemSelected(item)
@@ -114,3 +146,4 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
