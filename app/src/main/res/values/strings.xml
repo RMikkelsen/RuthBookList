@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">BookSwap</string>
     <string name="action_settings">settings</string>
+    <string name="img">IMG</string>
+    <string name="ok_to_swap">OK to Swap</string>
+    <string name="deleteitem">deleteitem</string>
+    <string name="itemdelete">itemdelete</string>
+    <string name="item_delete">item_delete</string>
+    <string name="addbutton">addbutton</string>
 </resources>

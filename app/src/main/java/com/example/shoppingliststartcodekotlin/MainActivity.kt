@@ -10,16 +10,21 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingliststartcodekotlin.adapters.ProductAdapter
 import com.example.shoppingliststartcodekotlin.data.Product
 import com.example.shoppingliststartcodekotlin.data.Repository
+import com.example.shoppingliststartcodekotlin.data.Repository.addProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.card_layout.*
+import kotlinx.android.synthetic.main.card_layout.view.*
+
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,8 +35,9 @@ class MainActivity : AppCompatActivity() {
     private var adapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>? = null
 
 
-    private var productList = mutableListOf<String>(products.toString())
-    private var displayList = mutableListOf<String>(products.toString())
+    private var productList = mutableListOf(products.toString())
+    private var displayList = mutableListOf(products.toString())
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("Products", "Found ${it.size} products")
             updateUI()
         })
+
 
 
     }
@@ -82,14 +89,14 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "settings clicked", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
             return true
         } else if (id == R.id.action_delete) {
-            Toast.makeText(this, "Delete Entire List Clicked!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
             //  game?.newGame()
             return true
         } else if (id == R.id.action_help) {
-            Toast.makeText(this, "Help Button Clicked", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Contact us at 123456 for help", Toast.LENGTH_SHORT).show()
             //  game?.newGame()
             return true
 
@@ -106,8 +113,8 @@ class MainActivity : AppCompatActivity() {
            //val text = inputText.text.toString()
             val sharingIntent = Intent(Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"
-            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Shared Data")
-           // sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "My BookSwap list $products")
+            //sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
             startActivity(Intent.createChooser(sharingIntent, "Share Using"))
 
         }
@@ -137,13 +144,42 @@ else if (id == R.id.action_search){
                     }
                     return true
                 }
+
             })
+
         }
 
 
             return super.onOptionsItemSelected(item)
         }
 
+
+    fun addProduct(view: View) {
+
+       // addButton.setOnClickListener{
+
+          //book_input.isVisible = true
+      var product = Product(book_input.text.toString())
+
+            addProduct(product).observe(this, Observer {
+                Log.d("Products", "Found ${it.size} products")
+                updateUI()
+            })
+
+            Toast.makeText(this, "Add Book to List", Toast.LENGTH_SHORT).show()
+
+     //   }
+    }
+    //fun deleteProduct(view: View) {
+
+       // var products = Product( item_Delete)
+       // Repository.deleteProduct(index).observe(this, Observer {
+        //    Log.d("Products", "Found ${it.size} products")
+        //    updateUI()
+     //   })
+
+    //    Toast.makeText(this, "delete item", Toast.LENGTH_SHORT).show()
+   // }
 
 }
 

@@ -3,6 +3,7 @@ package com.example.shoppingliststartcodekotlin.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -10,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingliststartcodekotlin.R
 import com.example.shoppingliststartcodekotlin.data.Repository
 import com.example.shoppingliststartcodekotlin.data.Product
+import com.example.shoppingliststartcodekotlin.data.Repository.deleteProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
 import kotlinx.android.synthetic.main.card_layout.view.*
-
 
 
 
@@ -22,7 +23,7 @@ class ProductAdapter() :
 
 //private var titles = arrayOf("Book One","Book Two","Book Three", "Book Four", "Book Five", "Book Six", "Book Seven", "Book Eight")
     //private var details = arrayOf("Item one details","Item two details","Item three details","Item four details", "Item five details","Item six details","Item seven details","Item eight details")
-    //private var images = intArrayOf(R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover)
+  //private var images = intArrayOf(R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
@@ -31,14 +32,17 @@ class ProductAdapter() :
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.itemTitle.text = products[position].title
         holder.itemAuthor.text = products[position].author
-       //holder.itemImage.text = products[position].image
+        //holder.itemImage.id = products[position].image
+    //holder.itemDelete.view = products[position].
+
 
 
     }
+
 
     override fun getItemCount(): Int {
        return products.size
@@ -48,42 +52,39 @@ class ProductAdapter() :
     //RecyclerView class
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var itemImage: ImageView
+
         var itemTitle: TextView
         var itemAuthor: TextView
+        var itemImage: ImageView
+       var itemDelete: ImageButton
 
-
-        //var itemDelete: TextView
 
     init {
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemAuthor = itemView.findViewById(R.id.item_author)
+            itemDelete = itemView.findViewById(R.id.item_Delete)
 
 
-            itemView.setOnClickListener {
-                val position: Int = adapterPosition
+           // itemView.setOnClickListener {
+               // val position: Int = adapterPosition
+                //Toast.makeText(itemView.context, "you clicked on ${products[position]}", Toast.LENGTH_SHORT).show()
 
-                Toast.makeText(itemView.context, "you clicked on ${products[position]}", Toast.LENGTH_SHORT).show()
+           itemDelete.setOnClickListener{
+            val position: Int =adapterPosition
+                deleteProduct(position)
+               notifyItemRemoved(position)
+           }
             }
 
-        //itemDelete = itemView.findViewById(R.id.item_delete)
-
-        //itemDelete.setOnClickListener { v: View ->
-          //  val position = adapterPosition
-          //  Repository.deleteProduct(position)
-         //   notifyItemRemoved(position) //this line notify the adapter
-       // }
-
     }
-
 
 
     }
 
 
 
-}
+
 
 
 //holder.itemImage = Repository.image.toString()
