@@ -26,7 +26,7 @@ object Repository {
         products.add(Product("Sapiens", "Yuval Noah Harari"))
         products.add(Product("The Devil in the White City", "Erik Larson"))
         products.add(Product("Kitchen Confidential", "Anthony Bourdain"))
-        products.add(Product("A Discovery of Witches", "Deborah Harkiness"))
+        products.add(Product("A Discovery of Witches", "Deborah Harkness"))
         products.add(Product("Dune", "Frank Herbert"))
         products.add(Product("Guns, Germs, & Steel", "Frank Diamond"))
         products.add(Product("Shantaram", "Gregory David Roberts"))

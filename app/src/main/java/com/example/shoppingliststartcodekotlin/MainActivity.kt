@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         Repository.getData().observe(this, Observer {
-            Log.d("Products", "Found ${it.size} products")
+          Log.d("Products", "Found ${it.size} products")
             updateUI()
         })
 
@@ -93,13 +94,17 @@ class MainActivity : AppCompatActivity() {
             return true
         } else if (id == R.id.action_delete) {
             Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
-            //  game?.newGame()
+
             return true
         } else if (id == R.id.action_help) {
             Toast.makeText(this, "Contact us at 123456 for help", Toast.LENGTH_SHORT).show()
-            //  game?.newGame()
-            return true
 
+            return true
+        } else if (id == R.id.action_sort) {
+          Repository.products.sortBy { it.title }
+           // Repository.products.sortBy { it.author }
+            adapter?.notifyDataSetChanged()
+            return true
 
         }else if (id == R.id.action_read) {
 
@@ -146,10 +151,7 @@ else if (id == R.id.action_search){
                 }
 
             })
-
         }
-
-
             return super.onOptionsItemSelected(item)
         }
 
@@ -159,27 +161,19 @@ else if (id == R.id.action_search){
        // addButton.setOnClickListener{
 
           //book_input.isVisible = true
-      var product = Product(book_input.text.toString())
+      var product = Product(book_input.text.toString(), author_input.text.toString())
 
             addProduct(product).observe(this, Observer {
                 Log.d("Products", "Found ${it.size} products")
                 updateUI()
+
             })
 
-            Toast.makeText(this, "Add Book to List", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Book added to List", Toast.LENGTH_SHORT).show()
 
      //   }
     }
-    //fun deleteProduct(view: View) {
 
-       // var products = Product( item_Delete)
-       // Repository.deleteProduct(index).observe(this, Observer {
-        //    Log.d("Products", "Found ${it.size} products")
-        //    updateUI()
-     //   })
-
-    //    Toast.makeText(this, "delete item", Toast.LENGTH_SHORT).show()
-   // }
 
 }
 

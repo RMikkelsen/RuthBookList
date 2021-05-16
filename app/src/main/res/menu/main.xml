@@ -31,7 +31,14 @@
         android:orderInCategory="2"
         app:showAsAction="never"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="help"/>
+        android:title="@string/help"/>
+
+    <item
+        android:id="@+id/action_sort"
+        android:orderInCategory="3"
+        app:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="@string/sort_by_title"/>
     <item
         android:id="@+id/action_delete"
         android:orderInCategory="3"

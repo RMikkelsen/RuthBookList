@@ -7,4 +7,8 @@
     <string name="itemdelete">itemdelete</string>
     <string name="item_delete">item_delete</string>
     <string name="addbutton">addbutton</string>
+    <string name="enter_book">Enter Book</string>
+    <string name="sort_by_title">Sort by Title</string>
+    <string name="help">help</string>
+    <string name="enter_author">Enter Author</string>
 </resources>
