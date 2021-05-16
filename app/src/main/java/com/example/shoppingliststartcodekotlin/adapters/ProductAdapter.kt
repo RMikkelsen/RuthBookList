@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.view.menu.MenuView
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
@@ -53,8 +54,6 @@ class ProductAdapter() :
         var itemAuthor: TextView
         var itemImage: ImageView
         var itemDelete: ImageButton
-       //var allDelete: ItemView
-
 
         init {
             itemImage = itemView.findViewById(R.id.item_image)
@@ -62,24 +61,27 @@ class ProductAdapter() :
             itemAuthor = itemView.findViewById(R.id.item_author)
             itemDelete = itemView.findViewById(R.id.item_Delete)
 
-           // allDelete = itemView.findViewById(R.id.action_delete)
 
-
-            // itemView.setOnClickListener {
-            // val position: Int = adapterPosition
-            //Toast.makeText(itemView.context, "you clicked on ${products[position]}", Toast.LENGTH_SHORT).show()
-
-            itemDelete.setOnClickListener {
+            itemView.setOnClickListener {
                 val position: Int = adapterPosition
-                deleteProduct(position)
-                notifyItemRemoved(position)
+                Toast.makeText(
+                    itemView.context,
+                    "You Clicked on ${products[position]}",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                itemDelete.setOnClickListener {
+                    val position: Int = adapterPosition
+                    deleteProduct(position)
+                    notifyItemRemoved(position)
+                }
+
+
             }
-
-
         }
-
     }
 }
+
 
 
 

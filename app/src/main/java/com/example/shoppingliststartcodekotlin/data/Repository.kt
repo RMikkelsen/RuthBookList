@@ -1,6 +1,7 @@
 package com.example.shoppingliststartcodekotlin.data
 
 import androidx.lifecycle.MutableLiveData
+import com.example.shoppingliststartcodekotlin.adapters.ProductAdapter
 
 
 object Repository {
@@ -19,8 +20,7 @@ object Repository {
         return productListener
     }
 
-    fun createTestData()
-    {
+    fun createTestData() {
         //add some products to the products list - for testing purposes
         products.add(Product("Salt: A World History", "Mark Kurlansky"))
         products.add(Product("Sapiens", "Yuval Noah Harari"))
@@ -33,22 +33,27 @@ object Repository {
 
 
     }
-    fun addProduct(product: Product):  MutableLiveData<MutableList<Product>> {
-      productListener.value = products
-       products.add(product)
+
+    fun addProduct(product: Product): MutableLiveData<MutableList<Product>> {
+        productListener.value = products
+        products.add(product)
         return productListener
     }
-    fun deleteProduct(index: Int):  MutableLiveData<MutableList<Product>>{
+
+    fun deleteProduct(index: Int): MutableLiveData<MutableList<Product>> {
         products.removeAt(index)
         productListener.value = products
         return productListener
     }
 
-    //fun deleteAll(products: MutableList<Product>): MutableLiveData<MutableList<Product>> {
-      //  this.products.clear()
-      //  productListener.value = this.products
-      // return productListener
-  // }
+    //fun deleteAll(productAdapter: ProductAdapter): MutableLiveData<MutableList<Product>> {
+     //   products.clear()
+     //   productListener.value = products
+     //   productAdapter?.notifyDataSetChanged()
+     //   return productListener
+  //  }
+
+
 
 
 }

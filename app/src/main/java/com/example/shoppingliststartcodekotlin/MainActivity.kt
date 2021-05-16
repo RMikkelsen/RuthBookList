@@ -93,15 +93,18 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
             return true
         } else if (id == R.id.action_delete) {
+            products.clear()
+            adapter?.notifyDataSetChanged()
             Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
 
             return true
         } else if (id == R.id.action_help) {
+
             Toast.makeText(this, "Contact us at 123456 for help", Toast.LENGTH_SHORT).show()
 
             return true
         } else if (id == R.id.action_sort) {
-          Repository.products.sortBy { it.title }
+          products.sortBy { it.title }
            // Repository.products.sortBy { it.author }
             adapter?.notifyDataSetChanged()
             return true
@@ -158,9 +161,6 @@ else if (id == R.id.action_search){
 
     fun addProduct(view: View) {
 
-       // addButton.setOnClickListener{
-
-          //book_input.isVisible = true
       var product = Product(book_input.text.toString(), author_input.text.toString())
 
             addProduct(product).observe(this, Observer {
@@ -171,9 +171,10 @@ else if (id == R.id.action_search){
 
             Toast.makeText(this, "Book added to List", Toast.LENGTH_SHORT).show()
 
-     //   }
+
     }
 
-
 }
+
+
 
