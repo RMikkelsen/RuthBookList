@@ -11,4 +11,6 @@
     <string name="sort_by_title">Sort by Title</string>
     <string name="help">help</string>
     <string name="enter_author">Enter Author</string>
+    <string name="delete">delete</string>
+    <string name="search">search</string>
 </resources>

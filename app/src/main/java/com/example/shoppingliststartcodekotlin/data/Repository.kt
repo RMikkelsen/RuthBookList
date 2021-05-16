@@ -34,7 +34,6 @@ object Repository {
 
     }
     fun addProduct(product: Product):  MutableLiveData<MutableList<Product>> {
-      products.add(product)
       productListener.value = products
        products.add(product)
         return productListener
@@ -45,9 +44,11 @@ object Repository {
         return productListener
     }
 
-    fun deleteAllProducts() {
-
-    }
+    //fun deleteAll(products: MutableList<Product>): MutableLiveData<MutableList<Product>> {
+      //  this.products.clear()
+      //  productListener.value = this.products
+      // return productListener
+  // }
 
 
 }
