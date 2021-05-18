@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494975146136",
+    "project_id": "bookswaplist",
+    "storage_bucket": "bookswaplist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494975146136:android:c1e89f406ef591aba2d8ed",
+        "android_client_info": {
+          "package_name": "com.example.shoppingliststartcodekotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494975146136-v5h22602lhno37tepfeqc29nm2qsenn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2Cr9OXc0iX8T8zKSFu7L5-4La3FIgaAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494975146136-v5h22602lhno37tepfeqc29nm2qsenn9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,13 +1,21 @@
 package com.example.shoppingliststartcodekotlin.data
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.shoppingliststartcodekotlin.adapters.ProductAdapter
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 
 object Repository {
 
 
     var products = mutableListOf<Product>()
+   //private lateinit var db: Firebase.firestore
+
+
+    private val db = Firebase.firestore
+//var db = FirebaseFirestore.getInstance()
 
     //listener to changes that we can then use in the Activity
     var productListener = MutableLiveData<MutableList<Product>>()
@@ -31,30 +39,46 @@ object Repository {
         products.add(Product("Guns, Germs, & Steel", "Frank Diamond"))
         products.add(Product("Shantaram", "Gregory David Roberts"))
 
-
     }
 
     fun addProduct(product: Product): MutableLiveData<MutableList<Product>> {
+
+        //db = Firebase.firestore
         productListener.value = products
         products.add(product)
-        return productListener
+        db.collection("products")
+            .add(product)
+            .addOnSuccessListener { documentReference ->
+                Log.d("Error", "DocumentSnapshot written with ID: " + documentReference.id)
+                product.id = documentReference.id
+            }
+            .addOnFailureListener { e -> Log.w("Error", "Error adding document", e) }
+
+      return productListener
     }
 
+    private fun readDataFromFireBase()
+    {
+        //val db = Firebase.firestore
+        db.collection("products").get()
+            .addOnSuccessListener {result ->
+                for (document in result){
+                    Log.d("Repository", "${document.id} =>${document.data}")
+                    val product = document.toObject<Product>()
+                    product.id = document.id
+                    products.add(product)
+                }
+                productListener.value = products
+            }
+            .addOnFailureListener{exception ->
+                Log.d("Repository", "Error getting documents: ", exception)
+            }
+    }
     fun deleteProduct(index: Int): MutableLiveData<MutableList<Product>> {
         products.removeAt(index)
         productListener.value = products
         return productListener
     }
-
-    //fun deleteAll(productAdapter: ProductAdapter): MutableLiveData<MutableList<Product>> {
-     //   products.clear()
-     //   productListener.value = products
-     //   productAdapter?.notifyDataSetChanged()
-     //   return productListener
-  //  }
-
-
-
 
 }
 

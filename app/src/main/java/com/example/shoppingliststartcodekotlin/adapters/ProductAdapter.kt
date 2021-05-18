@@ -7,11 +7,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.view.menu.MenuView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingliststartcodekotlin.R
-import com.example.shoppingliststartcodekotlin.data.Repository
 import com.example.shoppingliststartcodekotlin.data.Repository.deleteProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
 
@@ -36,7 +33,6 @@ class ProductAdapter() :
         holder.itemTitle.text = products[position].title
         holder.itemAuthor.text = products[position].author
         //holder.itemImage.id = products[position].image
-        //holder.itemDelete.view = products[position].
 
     }
 
@@ -48,7 +44,6 @@ class ProductAdapter() :
     //recives itemview object with type View
     //RecyclerView class
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
 
         var itemTitle: TextView
         var itemAuthor: TextView
@@ -62,14 +57,12 @@ class ProductAdapter() :
             itemDelete = itemView.findViewById(R.id.item_Delete)
 
 
-            itemView.setOnClickListener {
-                val position: Int = adapterPosition
-                Toast.makeText(
-                    itemView.context,
-                    "You Clicked on ${products[position]}",
-                    Toast.LENGTH_SHORT
-                ).show()
-
+           itemView.setOnClickListener {
+               val position: Int = adapterPosition
+               Toast.makeText(
+                       itemView.context, "You Clicked on ${products[position]}", Toast.LENGTH_SHORT,
+               ).show()
+           }
                 itemDelete.setOnClickListener {
                     val position: Int = adapterPosition
                     deleteProduct(position)
@@ -80,7 +73,7 @@ class ProductAdapter() :
             }
         }
     }
-}
+
 
 
 

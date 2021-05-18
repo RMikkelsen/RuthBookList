@@ -1,17 +1,16 @@
 package com.example.shoppingliststartcodekotlin
 
+
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import androidx.appcompat.widget.SearchView
 import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +19,9 @@ import com.example.shoppingliststartcodekotlin.data.Product
 import com.example.shoppingliststartcodekotlin.data.Repository
 import com.example.shoppingliststartcodekotlin.data.Repository.addProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.card_layout.*
-import kotlinx.android.synthetic.main.card_layout.view.*
-
 import java.util.*
 
 
@@ -35,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>? = null
 
-
     private var productList = mutableListOf(products.toString())
     private var displayList = mutableListOf(products.toString())
 
@@ -43,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        FirebaseApp.initializeApp(applicationContext)
 //initialize layoutManager object
         layoutManager = LinearLayoutManager(this)
 
@@ -52,14 +50,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         Repository.getData().observe(this, Observer {
-          Log.d("Products", "Found ${it.size} products")
+            Log.d("Products", "Found ${it.size} products")
             updateUI()
         })
 
 
-
     }
-
 
     fun updateUI() {
         // val layoutManager = LinearLayoutManager(this)
@@ -76,7 +72,6 @@ class MainActivity : AppCompatActivity() {
         //recyclerView.adapter = adapter
 
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -109,6 +104,7 @@ class MainActivity : AppCompatActivity() {
             adapter?.notifyDataSetChanged()
             return true
 
+        //intent to goodreads
         }else if (id == R.id.action_read) {
 
                     val intent = Intent(
@@ -126,26 +122,27 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(sharingIntent, "Share Using"))
 
         }
+//search bar implemented but not working :(
 else if (id == R.id.action_search){
             var searchView = item.actionView as SearchView
-            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(query:String?): Boolean{
-                return true
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
                 }
 
-               // check if new text is not empty
+                // check if new text is not empty
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    if(newText!!.isNotEmpty()){
+                    if (newText!!.isNotEmpty()) {
                         displayList.clear()
                         var search = newText.toLowerCase(Locale.getDefault())
-                        for(Product in productList){
-                            if(Product.toLowerCase(Locale.getDefault()).contains(search)){
-                displayList.add(Product)
+                        for (Product in productList) {
+                            if (Product.toLowerCase(Locale.getDefault()).contains(search)) {
+                                displayList.add(Product)
                             }
 
                             recyclerView.adapter!!.notifyDataSetChanged()
                         }
-                    }else {
+                    } else {
                         displayList.clear()
                         displayList.addAll(productList)
                         recyclerView.adapter!!.notifyDataSetChanged()
