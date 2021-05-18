@@ -13,4 +13,7 @@
     <string name="enter_author">Enter Author</string>
     <string name="delete">delete</string>
     <string name="search">search</string>
+    <string name="Help">Help</string>
+    <string name="contact">Contact</string>
+    <string name="enter_your_name">Enter your Name</string>
 </resources>

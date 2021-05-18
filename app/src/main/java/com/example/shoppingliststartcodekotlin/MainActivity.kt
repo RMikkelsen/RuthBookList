@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
@@ -89,11 +90,30 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
             return true
         } else if (id == R.id.action_delete) {
-            products.clear()
-            adapter?.notifyDataSetChanged()
+           // products.clear()
+           // adapter?.notifyDataSetChanged()
 
 
-            Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
+
+           // val builder = AlertDialog.Builder(this@MainActivity)
+
+          val builder = AlertDialog.Builder(this@MainActivity)
+            builder.setTitle("Confirm Delete")
+           builder.setMessage("Whoa There! Are you Sure you want to delete the entire list??")
+          builder.setPositiveButton("Yes") { dialog, id ->
+               products.clear()
+              adapter?.notifyDataSetChanged()
+              dialog.cancel()
+          }
+           builder.setNegativeButton("No") { dialog, id ->
+               dialog.cancel()
+
+           }
+          val alert = builder.create()
+            alert.show()
+
+
 
 
             return true

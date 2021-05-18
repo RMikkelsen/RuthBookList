@@ -6,8 +6,8 @@
 
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="1"
-        android:title="Settings"
+        android:orderInCategory="4"
+        android:title="@string/enter_your_name"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_send"
@@ -22,15 +22,16 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_help"
-        android:orderInCategory="2"
+        android:orderInCategory="1"
         app:showAsAction="never"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="@string/help"/>
+        android:title="@string/contact"/>
 
     <item
         android:id="@+id/action_sort"
         android:orderInCategory="3"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_sort_alphabetically"
         android:title="@string/sort_by_title"/>
     <item
         android:id="@+id/action_delete"
