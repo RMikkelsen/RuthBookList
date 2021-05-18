@@ -9,8 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="411dp"
+        android:layout_height="632dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -20,20 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/second_input"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="44dp"
-        android:clickable="true"
-        android:contentDescription="@string/addbutton"
-        android:elevation="6dp"
-        android:focusable="true"
-        android:onClick="addProduct"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_item" />
+
 
     <com.google.android.material.textfield.TextInputLayout
 
@@ -53,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="#FFFFFF"
-        android:backgroundTint="#E1DCDC"
+        android:backgroundTint="#FFFFFF"
         android:elevation="6dp"
         android:hint="@string/enter_book"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,10 +58,24 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/author_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#D0FFFFFF"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
             android:hint="@string/enter_author" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="656dp"
+        android:clickable="true"
+        android:contentDescription="@string/addbutton"
+        android:elevation="6dp"
+        android:focusable="true"
+        android:onClick="addProduct"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

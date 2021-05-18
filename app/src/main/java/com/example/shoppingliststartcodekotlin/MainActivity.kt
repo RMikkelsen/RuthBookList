@@ -163,7 +163,7 @@ else if (id == R.id.action_search){
             addProduct(product).observe(this, Observer {
                 Log.d("Products", "Found ${it.size} products")
                 updateUI()
-
+                adapter?.notifyDataSetChanged()
             })
 
             Toast.makeText(this, "Book added to List", Toast.LENGTH_SHORT).show()
