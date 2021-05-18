@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingliststartcodekotlin.R
 import com.example.shoppingliststartcodekotlin.data.Repository.deleteProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
+import com.google.android.material.snackbar.Snackbar
 
 
 //adding inner class of viewholder
@@ -67,6 +68,18 @@ class ProductAdapter() :
                     val position: Int = adapterPosition
                     deleteProduct(position)
                     notifyItemRemoved(position)
+
+                    //snackbar from book
+                    var undoOnClickListener: View.OnClickListener = View.OnClickListener { view ->
+                        products.removeAt(position)
+                        notifyDataSetChanged()
+                        Snackbar.make(view, "Book back on SwapList", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
+                    }
+
+                    Snackbar.make(itemDelete, "Book Deleted From SwapList", Snackbar.LENGTH_LONG)
+                        .setAction("Undo", undoOnClickListener).show()
+
                 }
 
 

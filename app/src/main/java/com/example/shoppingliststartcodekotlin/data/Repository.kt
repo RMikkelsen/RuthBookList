@@ -22,8 +22,11 @@ object Repository {
 
 
     fun getData(): MutableLiveData<MutableList<Product>> {
-        if (products.isEmpty())
+       if (products.isEmpty())
             createTestData()
+
+            readDataFromFireBase()
+
         productListener.value = products //we inform the listener we have new data
         return productListener
     }
@@ -31,11 +34,11 @@ object Repository {
     fun createTestData() {
         //add some products to the products list - for testing purposes
         products.add(Product("Salt: A World History", "Mark Kurlansky"))
-        products.add(Product("Sapiens", "Yuval Noah Harari"))
+      products.add(Product("Sapiens", "Yuval Noah Harari"))
         products.add(Product("The Devil in the White City", "Erik Larson"))
         products.add(Product("Kitchen Confidential", "Anthony Bourdain"))
-        products.add(Product("A Discovery of Witches", "Deborah Harkness"))
-        products.add(Product("Dune", "Frank Herbert"))
+       products.add(Product("A Discovery of Witches", "Deborah Harkness"))
+       products.add(Product("Dune", "Frank Herbert"))
         products.add(Product("Guns, Germs, & Steel", "Frank Diamond"))
         products.add(Product("Shantaram", "Gregory David Roberts"))
 
@@ -44,8 +47,8 @@ object Repository {
     fun addProduct(product: Product): MutableLiveData<MutableList<Product>> {
 
         //db = Firebase.firestore
-        productListener.value = products
-        products.add(product)
+      productListener.value = products
+     products.add(product)
         db.collection("products")
             .add(product)
             .addOnSuccessListener { documentReference ->
@@ -66,7 +69,7 @@ object Repository {
                     Log.d("Repository", "${document.id} =>${document.data}")
                     val product = document.toObject<Product>()
                     product.id = document.id
-                    products.add(product)
+                    //products.add(product)
                 }
                 productListener.value = products
             }

@@ -19,9 +19,10 @@ import com.example.shoppingliststartcodekotlin.data.Product
 import com.example.shoppingliststartcodekotlin.data.Repository
 import com.example.shoppingliststartcodekotlin.data.Repository.addProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.card_layout.*
 import java.util.*
 
 
@@ -90,7 +91,10 @@ class MainActivity : AppCompatActivity() {
         } else if (id == R.id.action_delete) {
             products.clear()
             adapter?.notifyDataSetChanged()
+
+
             Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
+
 
             return true
         } else if (id == R.id.action_help) {
@@ -166,11 +170,20 @@ else if (id == R.id.action_search){
                 adapter?.notifyDataSetChanged()
             })
 
-            Toast.makeText(this, "Book added to List", Toast.LENGTH_SHORT).show()
-
+            //Toast.makeText(this, "Book added to List", Toast.LENGTH_SHORT).show()
+        //snackbar instead of toast with undo option from kotlin book
+        Snackbar.make(view, "Book added to SwapList", Snackbar.LENGTH_LONG)
+            .setAction("Undo", undoOnClickListener).show()
 
     }
 
+
+    var undoOnClickListener: View.OnClickListener = View.OnClickListener { view ->
+        products.removeAt(products.size - 1)
+        adapter?.notifyDataSetChanged()
+        Snackbar.make(view, "Book removed", Snackbar.LENGTH_LONG)
+            .setAction("Action", null).show()
+    }
 }
 
 
