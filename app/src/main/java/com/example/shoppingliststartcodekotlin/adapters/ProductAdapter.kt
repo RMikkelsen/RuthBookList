@@ -8,7 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.shoppingliststartcodekotlin.MainActivity
 import com.example.shoppingliststartcodekotlin.R
+import com.example.shoppingliststartcodekotlin.data.Product
+import com.example.shoppingliststartcodekotlin.data.Repository
+import com.example.shoppingliststartcodekotlin.data.Repository.addProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.deleteProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
 import com.google.android.material.snackbar.Snackbar
@@ -71,8 +75,12 @@ class ProductAdapter() :
 
                     //snackbar from book
                     var undoOnClickListener: View.OnClickListener = View.OnClickListener { view ->
-                        products.removeAt(position)
+
+                        //products.add(Product("$itemDelete"))
+                     products.add(position, Product("Error showing product"))
+
                         notifyDataSetChanged()
+
                         Snackbar.make(view, "Book back on SwapList", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show()
                     }
