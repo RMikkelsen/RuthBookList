@@ -4,10 +4,13 @@ package com.example.shoppingliststartcodekotlin
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -21,9 +24,15 @@ import com.example.shoppingliststartcodekotlin.data.Repository
 import com.example.shoppingliststartcodekotlin.data.Repository.addProduct
 import com.example.shoppingliststartcodekotlin.data.Repository.products
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.FirebaseApp
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.card_layout.*
+import kotlinx.android.synthetic.main.name_alert.*
+import kotlinx.android.synthetic.main.name_alert.view.*
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -87,8 +96,24 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
+
+
+            val builder = AlertDialog.Builder(this)
+            val inflater = this.layoutInflater
+            builder.setTitle("Customize your Welcome ")
+            val dialogLayout = inflater.inflate(R.layout.name_alert, null)
+          val editText  = dialogLayout.findViewById<TextInputEditText>(R.id.nameEdit)
+            builder.setView(dialogLayout)
+            builder.setPositiveButton("Add Name") { dialogInterface, i -> Toast.makeText(this,
+              //"Welcome to BookSwap $nameInput", Toast.LENGTH_LONG).show() }
+            "Welcome to BookSwap" +" " + editText.text.toString(), Toast.LENGTH_LONG).show() }
+            builder.show()
+
+            //Toast.makeText(this, "$nameInput", Toast.LENGTH_SHORT).show()
             return true
+
+
+
         } else if (id == R.id.action_delete) {
            // products.clear()
            // adapter?.notifyDataSetChanged()
@@ -96,8 +121,8 @@ class MainActivity : AppCompatActivity() {
 
            // Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
 
-           // val builder = AlertDialog.Builder(this@MainActivity)
 
+            //
           val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle("Confirm Delete")
            builder.setMessage("Whoa There! Are you Sure you want to delete the entire list??")
