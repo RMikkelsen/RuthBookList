@@ -9,8 +9,9 @@ import com.google.firebase.ktx.Firebase
 
 object Repository {
 
-
     var products = mutableListOf<Product>()
+
+
    //private lateinit var db: Firebase.firestore
 
 

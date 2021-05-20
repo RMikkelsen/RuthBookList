@@ -26,25 +26,20 @@ class ProductAdapter() :
     //private var details = arrayOf("Item one details","Item two details","Item three details","Item four details", "Item five details","Item six details","Item seven details","Item eight details")
     //private var images = intArrayOf(R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover,R.drawable.bookcover)
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
         //create view object
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
         return ViewHolder(v)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.itemTitle.text = products[position].title
         holder.itemAuthor.text = products[position].author
         //holder.itemImage.id = products[position].image
-
     }
-
     override fun getItemCount(): Int {
         return products.size
     }
-
     //handles data passed to cardview
     //recives itemview object with type View
     //RecyclerView class

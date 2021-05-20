@@ -38,11 +38,10 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    //you need to have an Adapter for the products
-    // lateinit var adapter: ProductAdapter
-
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>? = null
+
+
 
     private var productList = mutableListOf(products.toString())
     private var displayList = mutableListOf(products.toString())
@@ -97,7 +96,6 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
         if (id == R.id.action_settings) {
 
-
             val builder = AlertDialog.Builder(this)
             val inflater = this.layoutInflater
             builder.setTitle("Customize your Welcome ")
@@ -113,16 +111,11 @@ class MainActivity : AppCompatActivity() {
             return true
 
 
-
         } else if (id == R.id.action_delete) {
            // products.clear()
            // adapter?.notifyDataSetChanged()
-
-
            // Toast.makeText(this, "You are about to delete entire list!", Toast.LENGTH_SHORT).show()
 
-
-            //
           val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle("Confirm Delete")
            builder.setMessage("Whoa There! Are you Sure you want to delete the entire list??")
@@ -133,7 +126,6 @@ class MainActivity : AppCompatActivity() {
           }
            builder.setNegativeButton("No") { dialog, id ->
                dialog.cancel()
-
            }
           val alert = builder.create()
             alert.show()
@@ -142,6 +134,7 @@ class MainActivity : AppCompatActivity() {
 
 
             return true
+
         } else if (id == R.id.action_help) {
 
             Toast.makeText(this, "Contact us at 123456 for help", Toast.LENGTH_SHORT).show()
@@ -171,8 +164,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(sharingIntent, "Share Using"))
 
         }
-//search bar implemented but not working :(
-else if (id == R.id.action_search){
+        //search bar implemented but not working :(
+            else if (id == R.id.action_search){
             var searchView = item.actionView as SearchView
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -219,9 +212,7 @@ else if (id == R.id.action_search){
         //snackbar instead of toast with undo option from kotlin book
         Snackbar.make(view, "Book added to SwapList", Snackbar.LENGTH_LONG)
             .setAction("Undo", undoOnClickListener).show()
-
     }
-
 
     var undoOnClickListener: View.OnClickListener = View.OnClickListener { view ->
         products.removeAt(products.size - 1)
